@@ -21,6 +21,8 @@ export SERVERNAME=${AIONAME}
 export LVM_VOLUME_NAME=${AIONAME}-lxc
 export MGMT_NETWORK_NAME=${AIONAME}-mgmt
 export VMNET_NETWORK_NAME=${AIONAME}-vmnet
+export VXLAN_NETWORK_NAME=${AIONAME}-vxlan
+export STORAGE_NETWORK_NAME=${AIONAME}-storage
 
 export GIT_URL=git@github.com:rcbops/ansible-lxc-rpc.git
 export GIT_BRANCH=master

@@ -13,7 +13,7 @@ there_are_things_to_delete(){
 
     if nova volume-list | grep ${AIONAME} ; then
         return 0
-    fi 
+    fi
 
     if nova network-list | grep ${AIONAME} ; then
         return 0
@@ -33,7 +33,7 @@ while there_are_things_to_delete ; do
         nova delete $SERVERNAME
     fi
 
-    if nova volume-list | grep $AIONAME ; then        
+    if nova volume-list | grep $AIONAME ; then
         echo "Deleting volumes..."
         nova volume-delete $LVM_VOLUME_ID
     fi

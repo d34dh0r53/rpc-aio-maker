@@ -25,23 +25,23 @@ rm cloudenv.bak
 
 
 nova boot \
-	--flavor $HOST_FLAVOR \
-	--image $BOOTIMAGE \
+  --flavor $HOST_FLAVOR \
+  --image $BOOTIMAGE \
     --nic net-id=$MGMT_NETWORK_ID \
     --nic net-id=$VXLAN_NETWORK_ID \
     --nic net-id=$STORAGE_NETWORK_ID \
-	--key-name $KEYPAIR_NAME \
-	--poll \
-	$SERVERNAME
-	
+  --key-name $KEYPAIR_NAME \
+  --poll \
+  $SERVERNAME
+
 
 export PUBLIC_IP=`nova show $SERVERNAME | grep "public network" | grep -oh -E "\b(?:\d{1,3}\.){3}\d{1,3}\b"`
 sed -i .bak "s|export PUBLIC_IP=.*|export PUBLIC_IP=$PUBLIC_IP|g" ./cloudenv
 rm cloudenv.bak
 
 nova volume-create $LVM_VOLUME_GB \
-	--display-name $LVM_VOLUME_NAME \
-    --volume-type $LVM_VOLUME_TYPE
+  --display-name $LVM_VOLUME_NAME \
+  --volume-type $LVM_VOLUME_TYPE
 
 export LVM_VOLUME_ID=`nova volume-show $LVM_VOLUME_NAME | grep  -E '\| id\W*\|' | awk '{print $4}'`
 sed -i .bak "s|export LVM_VOLUME_ID=.*|export LVM_VOLUME_ID=$LVM_VOLUME_ID|g" ./cloudenv
